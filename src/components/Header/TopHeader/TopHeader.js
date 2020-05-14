@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as authActions from '../../../store/actions/authActions';
 import { connect } from 'react-redux';
 
+
 class TopHeader extends Component{
 
     componentDidMount() {
@@ -24,6 +25,7 @@ class TopHeader extends Component{
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <a className="navbar-brand">Fashion Store</a>
+
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -31,8 +33,28 @@ class TopHeader extends Component{
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         {/*<li class="nav-item">*/}
-                        {/*    <a class="nav-link" href="#">Pricing</a>*/}
+                        {/*    <a class="nav-link" href="#">Products</a>*/}
                         {/*</li>*/}
+
+                        <li className="nav-item">
+                               <a> <Link className="nav-link"   to="/addProducts">AddProducts</Link></a>
+                            {/*<nav.Link  href="/">AddProducts</nav.Link>*/}
+                            {/*<Link to="/addProducts" className="nav-link">AddProducts</Link>*/}
+                            {/*<NavLink href="#addProducts">AddProducts</NavLink>*/}
+                            {/*<a class="nav-link" href="/addProducts">AddProducts</a>*/}
+
+                        </li>
+
+                        <li className="nav-item">
+                            <a> <Link className="nav-link"   to="/index">Products</Link></a>
+                            {/*<nav.Link  href="/">AddProducts</nav.Link>*/}
+                            {/*<Link to="/addProducts" className="nav-link">AddProducts</Link>*/}
+                            {/*<NavLink href="#addProducts">AddProducts</NavLink>*/}
+                            {/*<a class="nav-link" href="/addProducts">AddProducts</a>*/}
+
+                        </li>
+
+
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
