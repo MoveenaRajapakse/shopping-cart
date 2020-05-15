@@ -9,10 +9,17 @@ export const addProducts = (token,product) =>{
             const response = await fetch(`${base_url}/products/add`,{
                 headers:{
                     'Content-Type': 'application/json',
-                    'auth-token': token,
+                    'auth-token': token
                 },
                 method:'POST',
                 body:JSON.stringify({
+                    name:product.name,
+                    price:product.price,
+                    stock:product.stock,
+                    description:product.description,
+                    productPic:product.productPic[0].img,
+                    keyword:product.keyword,
+                    category:product.category
 
                 })
             });

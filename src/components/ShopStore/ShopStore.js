@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import Products from './Products/Products';
+import Products from '../ShopStore/Products/Products';
 import addProducts from '../../containers/Products/addProducts';
 import index from '../../containers/Products/ProductDetails/index';
 import { Route, Switch } from 'react-router-dom';
@@ -25,7 +25,7 @@ class ShopStore extends Component{
                 <Switch>
                     {/*<Route path="/" exact component={Products} />*/}
                     {/*<Route path="/products" exact component={Products} />*/}
-                <Route path="/addProducts" exact component={addProducts} />
+                    <Route path="/addProducts" exact component={addProducts} />
                     <Route path="/index" exact component={index} />
                     {/*<Route path="/products/:slug" component={Products} />*/}
                 </Switch>
