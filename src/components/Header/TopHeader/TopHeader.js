@@ -46,7 +46,7 @@ class TopHeader extends Component{
                         </li>
 
                         <li className="nav-item">
-                            <a> <Link className="nav-link"   to="/index">Products</Link></a>
+                            <a> <Link className="nav-link"   to="/Products">Products</Link></a>
                             {/*<nav.Link  href="/">AddProducts</nav.Link>*/}
                             {/*<Link to="/addProducts" className="nav-link">AddProducts</Link>*/}
                             {/*<NavLink href="#addProducts">AddProducts</NavLink>*/}
