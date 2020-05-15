@@ -77,7 +77,7 @@ export const getToken = () => {
 
         if(authData){
             const auth = JSON.parse(authData);
-            if(auth.hasOwnProperty('token') && auth.token != ''){
+            if(auth.hasOwnProperty('token') && auth.token !== ''){
                 dispatch({
                     type: AUTHENTICATE_USER,
                     auth: auth

@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import Error from '../../components/Error/error';
+import Header from "../../components/Header/Header";
 
 
 class Login extends Component {
@@ -99,13 +100,15 @@ class Login extends Component {
     render() {
 
         if(this.state.redirectToReferrer&&this.state.isAdmin)
-            return <Redirect to="/cart"/>
+            return <Redirect to="/addcategory"/>
         if(this.state.redirectToReferrer&&this.state.isManager)
             return <Redirect to="/all"/>
         if(this.state.redirectToReferrer)
             return <Redirect to="/"/>
 
         return (
+            <React.Fragment>
+                <Header/>
             <div className="jumbotron bg-transparent d-flex align-items-center">
                 <form className="col-md-4 offset-md-4" onSubmit={this.loginHandler}>
                     <div>
@@ -125,6 +128,7 @@ class Login extends Component {
                                onChange={this.textHandler}/>
                     </div>
                     <Error>{this.state.errorMessage}</Error>
+                    <br/>
                     <div className="form-group ">
                         <button type="submit" className="btn btn-dark btn-block">Login</button>
                     </div>
@@ -133,6 +137,7 @@ class Login extends Component {
                     </div>
                 </form>
             </div>
+            </React.Fragment>
         );
     }
 }

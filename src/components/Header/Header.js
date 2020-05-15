@@ -24,7 +24,7 @@ class Header extends Component {
     }
 
     render() {
-        const {isAuthenticated} = this.props.auth;
+        //const {isAuthenticated} = this.props.auth;
         //const {cart} = this.props;
         //const cartCount = isAuthenticated ? cart.cartCount : '';
         return (

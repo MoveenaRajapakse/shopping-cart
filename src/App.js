@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-//import PrivateRoute from '../PrivateRoute';
 import Shop from './containers/Shop/Shop';
 import Login from './containers/Login/login';
 import Signup from './containers/Signup/signup';
+import AddCategory from "./containers/AdminPanel/addCategory";
+import AddManager from "./containers/AdminPanel/addManager";
 //import ForgetPassword from './ForgetPassword';
 //import ControlPanel from './ControlPanel';
-
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import authReducers from './store/reducers/authReducers';
+import PrivateRoute from "./PrivateRoute";
 //import productReducers from '../store/reducers/productReducers';
 //import ProductDetails from './ProductDetails';
 
@@ -48,8 +49,9 @@ function App() {
               {/*<PrivateRoute path="/place-order" component={PlaceOrder} />*/}
               {/*<PrivateRoute path="/thank-you" component={ThankYou} />*/}
               {/*<PrivateRoute path="/orders" component={Orders} />*/}
+              <PrivateRoute path="/addcategory" component={AddCategory} />
+              <PrivateRoute path="/addmanager" component={AddManager} />
               <Route path="/"  component={Shop} />
-
             </Switch>
 
 

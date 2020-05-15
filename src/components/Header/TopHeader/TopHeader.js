@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as authActions from '../../../store/actions/authActions';
 import { connect } from 'react-redux';
+import '../link.styles.css';
+import './topheader.styles.css';
+
 
 class TopHeader extends Component{
 
@@ -10,36 +13,53 @@ class TopHeader extends Component{
     }
 
     render() {
+        let addManager;
         let guestAccount =  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li className="dropdown-item"><Link to="/signup"><i className="fa fa-user-plus"></i>&nbsp;&nbsp;<span>Register</span></Link></li>
-            <li className="dropdown-item"><Link to="/login"><i className="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span></Link></li>
+            <li className="dropdown-item"><Link className="text-link" to="/signup"><i className="fa fa-user-plus"></i>&nbsp;&nbsp;<span>Register</span></Link></li>
+            <li className="dropdown-item"><Link className="text-link" to="/login"><i className="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span></Link></li>
         </div>;
         if(this.props.auth.isAuthenticated){
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li className="dropdown-item"><Link to="/orders"><i className="fa fa-list-alt"></i>&nbsp;&nbsp;<span>Orders</span></Link></li>
-                <li className="dropdown-item"><Link to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+                <li className="dropdown-item"><Link className="text-link" to="/orders"><i className="fa fa-list-alt"></i>&nbsp;&nbsp;<span>Orders</span></Link></li>
+                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
             </div>;
+        }
+        if(this.props.auth.isAuthenticated && this.props.auth.user.isAdmin){
+            guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+            </div>;
+
+            addManager = <ul className="navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link"><Link to="/addcategory" className="text-link">Categories Management</Link></a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link"><Link to="/addmanager" className="text-link">Managers Management</Link></a>
+                </li>
+            </ul>
+
         }
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand">Fashion Store</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a className="navbar-brand brand"><Link className="text-link" to="/">Fashion House</Link></a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul className="navbar-nav">
-                        {/*<li class="nav-item">*/}
-                        {/*    <a class="nav-link" href="#">Pricing</a>*/}
-                        {/*</li>*/}
+                <div className="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarNavDropdown">
+                    <ul className="navbar-nav mr-auto">
+
+                        {addManager}
+                    </ul>
+                    <ul className="navbar-nav ml-auto">
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                            <Link className="nav-link dropdown-toggle text-link" id="navbarDropdownMenuLink"
                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                  to="/account"><i className="fa fa-user-circle-o"></i>&nbsp;&nbsp;{this.props.auth.isAuthenticated ? this.props.auth.user.firstName: 'My Account'}</Link>
+                                  to="/account"><i className="fa fa-user-circle-o"></i>&nbsp;&nbsp;{this.props.auth.isAuthenticated ? this.props.auth.user.firstName: 'My Account'}&nbsp;&nbsp;</Link>
                             {guestAccount}
                         </li>
                     </ul>
+                    <ul>&nbsp;</ul>
                 </div>
             </nav>
         );

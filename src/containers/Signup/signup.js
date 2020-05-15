@@ -3,6 +3,7 @@ import * as authActions from '../../store/actions/authActions';
 import { Link, Redirect } from 'react-router-dom';
 import  { connect } from 'react-redux';
 import Error from '../../components/Error/error';
+import Header from "../../components/Header/Header";
 
 class Signup extends Component {
 
@@ -125,6 +126,8 @@ class Signup extends Component {
         }
 
         return (
+            <React.Fragment>
+                <Header/>
             <div className="jumbotron bg-transparent d-flex align-items-center">
                 <form className="col-md-4 offset-md-4" onSubmit={this.signupHandler} >
                     <div>
@@ -163,6 +166,7 @@ class Signup extends Component {
                     </div>
                 </form>
             </div>
+            </React.Fragment>
         );
     }
 }
