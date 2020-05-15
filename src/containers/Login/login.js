@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
-import Error from '../../components/Error/error';
+import Error from '../../components/Message/Error/error';
 import Header from "../../components/Header/Header";
 
 
@@ -102,7 +102,7 @@ class Login extends Component {
         if(this.state.redirectToReferrer&&this.state.isAdmin)
             return <Redirect to="/addcategory"/>
         if(this.state.redirectToReferrer&&this.state.isManager)
-            return <Redirect to="/all"/>
+            return <Redirect to="/addproduct"/>
         if(this.state.redirectToReferrer)
             return <Redirect to="/"/>
 

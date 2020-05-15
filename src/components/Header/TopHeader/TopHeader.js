@@ -13,7 +13,7 @@ class TopHeader extends Component{
     }
 
     render() {
-        let addManager;
+        let dashboard;
         let guestAccount =  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li className="dropdown-item"><Link className="text-link" to="/signup"><i className="fa fa-user-plus"></i>&nbsp;&nbsp;<span>Register</span></Link></li>
             <li className="dropdown-item"><Link className="text-link" to="/login"><i className="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span></Link></li>
@@ -29,7 +29,7 @@ class TopHeader extends Component{
                 <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
             </div>;
 
-            addManager = <ul className="navbar-nav">
+            dashboard = <ul className="navbar-nav">
                 <li className="nav-item">
                     <a className="nav-link"><Link to="/addcategory" className="text-link">Categories Management</Link></a>
                 </li>
@@ -37,8 +37,19 @@ class TopHeader extends Component{
                     <a className="nav-link"><Link to="/addmanager" className="text-link">Managers Management</Link></a>
                 </li>
             </ul>
-
         }
+        if(this.props.auth.isAuthenticated && this.props.auth.user.isManager){
+            guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+            </div>;
+
+            dashboard = <ul className="navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link"><Link to="/addproduct" className="text-link">Products Management</Link></a>
+                </li>
+            </ul>
+        }
+
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,7 +60,7 @@ class TopHeader extends Component{
                 <div className="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarNavDropdown">
                     <ul className="navbar-nav mr-auto">
 
-                        {addManager}
+                        {dashboard}
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item dropdown">

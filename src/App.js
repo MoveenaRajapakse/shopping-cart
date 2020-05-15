@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Shop from './containers/Shop/Shop';
 import Login from './containers/Login/login';
 import Signup from './containers/Signup/signup';
-import AddCategory from "./containers/AdminPanel/addCategory";
-import AddManager from "./containers/AdminPanel/addManager";
+import AddCategory from "./containers/AdminPanel/CategoryManagement/addCategory";
+import AddManager from "./containers/AdminPanel/ManagerManagement/addManager";
+import AddProducts from "./containers/ManagerPanel/addProducts";
 //import ForgetPassword from './ForgetPassword';
 //import ControlPanel from './ControlPanel';
 import { Provider } from 'react-redux';
@@ -49,6 +50,7 @@ function App() {
               {/*<PrivateRoute path="/place-order" component={PlaceOrder} />*/}
               {/*<PrivateRoute path="/thank-you" component={ThankYou} />*/}
               {/*<PrivateRoute path="/orders" component={Orders} />*/}
+              <PrivateRoute path="/addproduct" component={AddProducts} />
               <PrivateRoute path="/addcategory" component={AddCategory} />
               <PrivateRoute path="/addmanager" component={AddManager} />
               <Route path="/"  component={Shop} />

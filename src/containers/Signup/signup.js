@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as authActions from '../../store/actions/authActions';
 import { Link, Redirect } from 'react-router-dom';
 import  { connect } from 'react-redux';
-import Error from '../../components/Error/error';
+import Error from '../../components/Message/Error/error';
 import Header from "../../components/Header/Header";
 
 class Signup extends Component {
