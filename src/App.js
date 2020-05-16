@@ -42,6 +42,7 @@ function App() {
 
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+
               {/*<Route path="/forget-password" component={ForgetPassword} />*/}
               {/*<Route path="/cpanel" component={ControlPanel} />*/}
               {/*<Route path="/products/:category/:slug" component={ProductDetails} />*/}

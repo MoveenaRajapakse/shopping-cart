@@ -18,10 +18,12 @@ class TopHeader extends Component{
             <li className="dropdown-item"><Link className="text-link" to="/signup"><i className="fa fa-user-plus"></i>&nbsp;&nbsp;<span>Register</span></Link></li>
             <li className="dropdown-item"><Link className="text-link" to="/login"><i className="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span></Link></li>
         </div>;
+
         if(this.props.auth.isAuthenticated){
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li className="dropdown-item"><Link className="text-link" to="/orders"><i className="fa fa-list-alt"></i>&nbsp;&nbsp;<span>Orders</span></Link></li>
                 <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+
             </div>;
         }
         if(this.props.auth.isAuthenticated && this.props.auth.user.isAdmin){

@@ -3,6 +3,7 @@ import {base_url} from "../../constants";
 import * as authActions from "../../store/actions/authActions";
 import {connect} from "react-redux";
 
+
 class ProductTable extends Component{
 
     state = {
@@ -62,6 +63,7 @@ class ProductTable extends Component{
                         <th scope="col">Discount</th>
                         <th scope="col">Created Date</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Options</th>
                     </tr>
                     </thead>
                     {
@@ -74,6 +76,8 @@ class ProductTable extends Component{
                                     <td>{product.offer}</td>
                                     <td>{this.formatDate(product.createdAt)}</td>
                                     <td>{product.stock}</td>
+                                    <td><input type="text" name="discount" placeholder="Discount" />&nbsp;&nbsp;
+                                        <button type="submit" value="Submit" className="btn btn-dark">Add Discount</button></td>
                                 </tr>
                                 </tbody>
                             )
