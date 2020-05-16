@@ -13,8 +13,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import authReducers from './store/reducers/authReducers';
 import PrivateRoute from "./PrivateRoute";
-//import productReducers from '../store/reducers/productReducers';
-//import ProductDetails from './ProductDetails';
+import productReducers from './store/reducers/productReducers';
+import ProductDetails from './containers/ProductDetails/productDetails';
 
 //import Cart from './Cart';
 //import cartReducers from '../store/reducers/cartReducers';
@@ -24,7 +24,7 @@ import PrivateRoute from "./PrivateRoute";
 
 const rootReducers = combineReducers({
   auth: authReducers,
-  //products: productReducers,
+  products: productReducers,
   //cart: cartReducers
 });
 
@@ -45,8 +45,8 @@ function App() {
 
               {/*<Route path="/forget-password" component={ForgetPassword} />*/}
               {/*<Route path="/cpanel" component={ControlPanel} />*/}
-              {/*<Route path="/products/:category/:slug" component={ProductDetails} />*/}
-              {/*<Route path="/products"  component={Shop} />*/}
+              <Route path="/products/:category/:slug" component={ProductDetails} />
+              <Route path="/products"  component={Shop} />
               {/*<PrivateRoute path="/cart" component={Cart} />*/}
               {/*<PrivateRoute path="/place-order" component={PlaceOrder} />*/}
               {/*<PrivateRoute path="/thank-you" component={ThankYou} />*/}

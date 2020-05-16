@@ -1,10 +1,8 @@
 .Content{
-    width: 85%;
-    border-top: 3px solid #000;
+    width: 90%;
+    /*border-top: 3px solid #000;*/
     margin: 0 auto;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
 }
 .ContentTitle{
     text-align: center;
@@ -14,9 +12,11 @@
     letter-spacing: 2px;
     font-size: 30px;
     font-weight: 300;
+    font-family:'Baloo 2', cursive;
     text-transform: capitalize;
+    background-color: #343A40;
+    color: white;
 }
-
 
 .ProductArea{
     display: flex;
@@ -26,12 +26,19 @@
     width: 280px;
     border: 1px solid #cecece;
     border-radius: 5px;
-    text-align: center;
-    margin: 0 10px 10px 0;
+    /*text-align: center;*/
+    margin: 0 20px 20px 0;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    backface-visibility: hidden;
+}
+
+.Product:hover{
+    transform: scale(1.05);
 }
 .Product > .ProductImage{
     width: 80%;
-    height: 300px;
+    height: 250px;
     overflow: hidden;
     margin: 0 auto;
 }
@@ -50,17 +57,19 @@
     flex: 2;
 }
 .ContentBody .MainContent{
-    flex: 8;
+    flex: 7;
 }
 .SideMenu{
     border: 1px solid #cecece;
-    margin-right: 10px;
+    margin-right: 30px;
     box-sizing: border-box;
 }
 .SideMenu .SideMenuTitle{
     font-size: 18px;
     border-bottom: 1px solid #cecece;
     padding: 5px 10px;
+    background-color: #343A40;
+    color: white;
 }
 .Filter .FilterTitle{
     font-size: 16px;
@@ -78,7 +87,7 @@
     font-weight: bold;
 }
 .FilterButton{
-    background: #eee;
+    background: #343A40;
     border: 1px solid #cecece;
     width: 95%;
     margin: 2px 5px;
@@ -88,4 +97,31 @@
     font-weight: bold;
     font-family: 'Lato', sans-serif;
     font-size: 12px;
+    color: white;
 }
+
+/*button for add to crt*/
+/*.btn{*/
+/*    background-color: cornflowerblue;*/
+/*    border-radius: 5px;*/
+/*    border-color: darkcyan;*/
+/*    border-width: 2px;*/
+/*}*/
+
+/*.btn:hover{*/
+/*    background-color: darkcyan;*/
+
+/*}*/
+/*-----------------*/
+.product-name{
+    font-size: 20px;
+    font-family:'Baloo 2', cursive;
+}
+
+.product-price{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Jost', sans-serif;
+}
+
+

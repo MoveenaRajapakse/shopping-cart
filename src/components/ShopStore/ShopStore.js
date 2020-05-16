@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-//import Products from './Products/Products';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Products from './Products/Products';
 import Header from '../Header/Header';
 //import * as authAtions from '../../store/actions/authActions';
 import { connect } from "react-redux";
@@ -22,10 +22,11 @@ class ShopStore extends Component{
         return (
             <React.Fragment>
                 <Header/>
+                <br/>
                 <Switch>
-                {/*    <Route path="/" exact component={Products} />*/}
-                {/*    <Route path="/products" exact component={Products} />*/}
-                {/*    <Route path="/products/:slug" component={Products} />*/}
+                    <Route path="/" exact component={Products} />
+                    <Route path="/products" exact component={Products} />
+                    <Route path="/products/:slug" component={Products} />
                 </Switch>
             </React.Fragment>
 

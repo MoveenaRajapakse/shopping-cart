@@ -3,6 +3,7 @@ import TopHeader from './TopHeader/TopHeader';
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 
+
 class Header extends Component {
 
     componentDidMount() {
@@ -31,7 +32,6 @@ class Header extends Component {
             <header className="Header">
                 <TopHeader logout={this.logout} />
                 {/*<MainHeader cartCount={cartCount} />*/}
-                {/*<BottomHeader />*/}
             </header>
         );
     }

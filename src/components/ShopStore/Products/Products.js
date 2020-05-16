@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import * as productActions from '../../../store/actions/productActions';
 import { connect } from 'react-redux';
 import './style.css';
-import Product from './Product';
+import Product from './Product/product';
 
 class Products extends Component{
 
     state = {
-        slug: 'Products'
+        slug: 'All Products',
     }
 
     componentDidMount() {
@@ -18,15 +18,13 @@ class Products extends Component{
     }
 
     getProducts = (categorySlug = '', filter = null) => {
-
         this.props.getProducts(categorySlug, filter)
             .then(response => {
-
                 console.log(response);
 
-                // this.setState({
-                //     products: response.message
-                // })
+                this.setState({
+                    products: response.message
+                })
             });
     }
 
@@ -49,7 +47,7 @@ class Products extends Component{
 
             categoriesAr.push(
                 <li key={value.slug}>
-                    <Link to={`/products/${value.slug}`}>{value.name}</Link>
+                    <Link className="text-link" to={`/products/${value.slug}`}>{value.name}</Link>
                     {value.children.length > 0 ? (<ul>{this.categoryTree(value.children)}</ul>) : null}
                 </li>
             );
@@ -62,23 +60,20 @@ class Products extends Component{
 
         const slug = Object.keys(this.props.match.params).length > 0 ? this.props.match.params.slug : this.state.slug;
 
-
-
         return (
-
             <div className="Content">
                 <div className="ContentTitle">
                     <h2 className="CategoryTitle">{slug}</h2>
                 </div>
                 <div className="ContentBody">
+                    {/*---------------side menu-----------*/}
                     <div className="SideMenu">
                         <h3 className="SideMenuTitle">Filters</h3>
                         <div className="Filter">
                             <p className="FilterTitle">Categories</p>
-                            <ul>
+                            <ul  className="list-unstyled">
                                 {
-                                    this.props.products.categories.length > 0 ?
-                                        this.categoryTree(this.props.products.categories) : null
+                                    this.props.products.categories.length > 0 ? this.categoryTree(this.props.products.categories) : null
                                 }
                             </ul>
                         </div>
@@ -93,11 +88,9 @@ class Products extends Component{
                             </div>
 
                         </div>
-
                     </div>
-
+                    {/*---------------products area-----------*/}
                     <div className="MainContent">
-
                         <div className="ProductArea">
                             {
                                 this.props.products.products.map(product => <Product
@@ -109,13 +102,11 @@ class Products extends Component{
                                     slug={product.slug}
                                 />)
                             }
-
+                            </div>
                         </div>
-
 
                     </div>
 
-                </div>
             </div>
 
         );
