@@ -18,9 +18,9 @@ import ProductDetails from './containers/ProductDetails/productDetails';
 import Cart from './containers/Cart/cart';
 import cartReducers from './store/reducers/cartReducer';
 
-//import PlaceOrder from './PlaceOrder';
-//import ThankYou from './ThankYou';
-//import Orders from './Orders';
+import PlaceOrder from './containers/PlaceOrder/PlaceOrder';
+import ThankYou from './containers/ThankYou/thankyou';
+import Orders from './containers/Orders/orders';
 
 const rootReducers = combineReducers({
   auth: authReducers,
@@ -47,9 +47,9 @@ function App() {
               <Route path="/products/:category/:slug" component={ProductDetails} />
               <Route path="/products"  component={Shop} />
               <PrivateRoute path="/cart" component={Cart} />
-              {/*<PrivateRoute path="/place-order" component={PlaceOrder} />*/}
-              {/*<PrivateRoute path="/thank-you" component={ThankYou} />*/}
-              {/*<PrivateRoute path="/orders" component={Orders} />*/}
+              <PrivateRoute path="/place-order" component={PlaceOrder} />
+              <PrivateRoute path="/thank-you" component={ThankYou} />
+              <PrivateRoute path="/orders" component={Orders} />
               <PrivateRoute path="/addproduct" component={AddProducts} />
               <PrivateRoute path="/addcategory" component={AddCategory} />
               <PrivateRoute path="/addmanager" component={AddManager} />
