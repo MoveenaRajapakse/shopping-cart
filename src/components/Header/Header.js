@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopHeader from './TopHeader/TopHeader';
+import * as cartActions from '../../store/actions/cartActions';
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 
@@ -25,13 +26,12 @@ class Header extends Component {
     }
 
     render() {
-        //const {isAuthenticated} = this.props.auth;
-        //const {cart} = this.props;
-        //const cartCount = isAuthenticated ? cart.cartCount : '';
+        const {isAuthenticated} = this.props.auth;
+        const {cart} = this.props;
+        const cartCount = isAuthenticated ? cart.cartCount : '';
         return (
             <header className="Header">
-                <TopHeader logout={this.logout} />
-                {/*<MainHeader cartCount={cartCount} />*/}
+                <TopHeader logout={this.logout} cartCount={cartCount}/>
             </header>
         );
     }
@@ -41,14 +41,14 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         auth: state.auth,
-        //cart: state.cart
+        cart: state.cart
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         getToken: () => dispatch(authActions.getToken()),
-        //getCartItems: (token, userId) => dispatch(cartActions.getCartItems(token, userId)),
+        getCartItems: (token, userId) => dispatch(cartActions.getCartItems(token, userId)),
         logout: () => dispatch(authActions.logout())
     }
 }

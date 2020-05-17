@@ -13,7 +13,15 @@ class TopHeader extends Component{
     }
 
     render() {
+
+        let cart =  <ul className="navbar-nav">
+            <li className="nav-item">
+                <a className="nav-link"><Link className="text-link" to="/cart"><i className="fa fa-shopping-cart"></i> ( {this.props.cartCount} ) </Link></a>
+            </li>
+        </ul>;
+
         let dashboard;
+
         let guestAccount =  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li className="dropdown-item"><Link className="text-link" to="/signup"><i className="fa fa-user-plus"></i>&nbsp;&nbsp;<span>Register</span></Link></li>
             <li className="dropdown-item"><Link className="text-link" to="/login"><i className="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span></Link></li>
@@ -26,7 +34,9 @@ class TopHeader extends Component{
 
             </div>;
         }
+
         if(this.props.auth.isAuthenticated && this.props.auth.user.isAdmin){
+            cart = null;
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
             </div>;
@@ -40,7 +50,9 @@ class TopHeader extends Component{
                 </li>
             </ul>
         }
+
         if(this.props.auth.isAuthenticated && this.props.auth.user.isManager){
+            cart = null;
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
             </div>;
@@ -61,10 +73,10 @@ class TopHeader extends Component{
                 </button>
                 <div className="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarNavDropdown">
                     <ul className="navbar-nav mr-auto">
-
                         {dashboard}
                     </ul>
                     <ul className="navbar-nav ml-auto">
+                        {cart}
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle text-link" id="navbarDropdownMenuLink"
                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -81,7 +93,8 @@ class TopHeader extends Component{
 
 const mapStateToProps = state => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        cart: state.cart
     }
 }
 
