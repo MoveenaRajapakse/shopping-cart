@@ -100,8 +100,8 @@ class ProductDetails extends Component{
                                 <img src={product.productPic[0].img} alt="" />
                             </div>
                             <div className="ActionButtonWrapper">
-                                <button onClick={() => { this.addToCart(product._id, product.price, product.name, product.productPic[0].img) }}><i className="fas fa-shopping-cart"></i>&nbsp;ADD TO CART</button>
-                                <button style={{background: '#fb641b'}}><i className="fas fa-bolt"></i>&nbsp;BUY NOW</button>
+                                <button className="btn btn-dark " onClick={() => { this.addToCart(product._id, product.price, product.name, product.productPic[0].img) }}><i className="fas fa-shopping-cart"></i>&nbsp;ADD TO CART</button>&nbsp;
+                                <button className="btn btn-dark "><i className="fas fa-bolt"></i>&nbsp;BUY NOW</button>
                             </div>
                         </div>
                         <div className="ProductDetails">
