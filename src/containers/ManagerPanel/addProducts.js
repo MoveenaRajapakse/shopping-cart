@@ -51,7 +51,7 @@ class AddProducts extends Component {
 
     getCategories = () => {
         console.log(this.props.auth.isAuthenticated)
-        const token =  this.props.auth.token;
+        //const token =  this.props.auth.token;
         fetch(`${base_url}/category`, {
             headers: {
                 'Content-Type': 'application/json',

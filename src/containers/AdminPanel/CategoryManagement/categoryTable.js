@@ -24,8 +24,11 @@ class CategoryTable extends Component{
         }
     }
 
+    componentDidUpdate(){
+        this.getCategories()
+    }
+
     getCategories = () => {
-        console.log(this.props.auth.isAuthenticated)
         const token =  this.props.auth.token;
         fetch(`${base_url}/category`, {
             headers: {
@@ -35,7 +38,6 @@ class CategoryTable extends Component{
         })
             .then(response => response.json())
             .then(jsonResponse => {
-                console.log(jsonResponse);
                 this.setState({
                     categoryList: jsonResponse.message
                 });
@@ -43,6 +45,13 @@ class CategoryTable extends Component{
             .catch(error => {
                 console.log(error);
             })
+
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(this.state.categoryList !== nextState.categoryList){
+            return true
+        }
     }
 
     formatDate = (date) => {

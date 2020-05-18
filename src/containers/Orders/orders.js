@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './orders.styles.css';
 import Header from '../../components/Header/Header';
 import * as authActions from '../../store/actions/authActions';
@@ -74,10 +73,10 @@ class Orders extends Component{
         return (
             <React.Fragment>
                 <Header />
+                <br/>
                 <div className="Content">
                     <div className="Card">
                         <p className="CardText">My Orders</p>
-
                         {
                             this.state.ordersList.map(order => {
                                 return (
@@ -119,7 +118,7 @@ class Orders extends Component{
                                         </div>
                                         <div className="OrderFooter">
                                             <p>Ordered On <span>{this.formatDate(order.orderDate)}</span></p>
-                                            <p>Order Total <span>${this.getOrderTotal(order._id)}</span></p>
+                                            <p><b>Order Total <span>${this.getOrderTotal(order._id)}</span></b></p>
                                         </div>
                                     </div>
                                 )

@@ -40,6 +40,7 @@ class AddManager extends Component{
         }
     }
 
+
     setError = (error, message,success) => {
         const { manager } = this.state;
         const updatedManagerForm = {

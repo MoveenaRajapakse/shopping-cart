@@ -24,8 +24,11 @@ class ManagerTable extends Component{
         }
     }
 
+    componentDidUpdate(){
+        this.getManagers()
+    }
+
     getManagers = () => {
-        console.log(this.props.auth.isAuthenticated)
         //const token =  this.props.auth.token;
         fetch(`${base_url}/manager`, {
             headers: {
@@ -35,7 +38,6 @@ class ManagerTable extends Component{
         })
             .then(response => response.json())
             .then(jsonResponse => {
-                console.log(jsonResponse);
                 this.setState({
                     managerList: jsonResponse.message
                 });
@@ -50,6 +52,25 @@ class ManagerTable extends Component{
         return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
+    removeManager = (id) => {
+        fetch(`${base_url}/manager/delete/`+id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': this.props.auth.token
+            },
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+                this.getManagers();
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+    }
+
     render() {
 
         return (
@@ -62,17 +83,19 @@ class ManagerTable extends Component{
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Created Date</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     {
-                        this.state.managerList.map(managers => {
+                        this.state.managerList.map(manager => {
                             return(
                                 <tbody>
                                 <tr>
-                                    <td>{managers.firstName}</td>
-                                    <td>{managers.lastName}</td>
-                                    <td>{managers.email}</td>
-                                    <td>{this.formatDate(managers.createdAt)}</td>
+                                    <td>{manager.firstName}</td>
+                                    <td>{manager.lastName}</td>
+                                    <td>{manager.email}</td>
+                                    <td>{this.formatDate(manager.createdAt)}</td>
+                                    <td><button type="button" onClick={()=>this.removeManager(manager._id)} className="btn btn-danger"><i className="fa fa-trash"/></button></td>
                                 </tr>
                                 </tbody>
                             )

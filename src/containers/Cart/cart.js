@@ -37,7 +37,7 @@ class Cart extends Component{
                 return;
             }
             const response = await this.props.updateCart(auth.token, auth.user.userId, product);
-            if(response.ok == 1){
+            if(response.ok === 1){
                 const {cartItems} = this.state;
                 this.setState({
                     cartItems: cartItems.map(item => item.product === productId ?

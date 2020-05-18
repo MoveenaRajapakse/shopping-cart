@@ -69,7 +69,7 @@ class PlaceOrder extends Component{
             }
         })
             .then(response => {
-                if(response.status == 200){
+                if(response.status === 200){
                     return response.json();
                 }else{
                     throw new Error('Something went wrong');

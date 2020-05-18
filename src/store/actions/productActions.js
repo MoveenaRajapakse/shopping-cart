@@ -39,7 +39,7 @@ export const getProducts = (categorySlug = '', filter) => {
 
         try{
 
-            categorySlug = (categorySlug == 'all') ? '' : categorySlug;
+            categorySlug = (categorySlug === 'all') ? '' : categorySlug;
 
             let query = '';
             if(filter){
@@ -52,7 +52,7 @@ export const getProducts = (categorySlug = '', filter) => {
 
             const response = await fetch(`${base_url}/products/${categorySlug}${query}`);
             const jsonResponse = await response.json();
-            if(response.status == 200){
+            if(response.status === 200){
                 dispatch({
                     type: GET_PRODUCTS,
                     products: jsonResponse.message
@@ -93,13 +93,10 @@ export const getSingleProduct = (productSlug) => {
         try{
 
             const response = await fetch(`${base_url}/products/category/${productSlug}`);
-            const jsonResponse = await response.json();
+            //const jsonResponse = await response.json();
             if(response.status === 200){
 
-
-
             }
-
 
         }catch(error){
             console.log(error);

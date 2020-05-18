@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-//import { Redirect } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import { connect } from 'react-redux';
 import * as cartActions from '../../store/actions/cartActions';
 import * as authActions from '../../store/actions/authActions';
 import './productdetails.styles.css';
 import { base_url } from '../../constants';
+import StarRatingComponent from 'react-star-rating-component';
 
 class ProductDetails extends Component{
 
     state = {
         product: null,
-        redirectToReferrer: false
+        redirectToReferrer: false,
+        review:'',
+        rating:0
     }
 
     componentDidMount() {
@@ -34,9 +36,6 @@ class ProductDetails extends Component{
                 })
         }
 
-
-
-
         const { category, slug } = this.props.match.params;
         fetch(`${base_url}/products/${category}/${slug}`)
             .then(response => response.json())
@@ -53,9 +52,6 @@ class ProductDetails extends Component{
             .catch(error => {
                 console.log(error);
             });
-
-
-
     }
 
     addToCart = (productId, price, name, image) => {
@@ -74,14 +70,61 @@ class ProductDetails extends Component{
             quantity: 1,
             price: price
         }
+
         this.props.addToCart(auth.token, cartItem)
             .then(response => {
-                //console.log(response);
                 console.log(this.props.cart);
             })
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    addReview = (productId) =>{
+
+        if(!this.props.auth.isAuthenticated){
+            this.props.history.push('/login');
+            return;
+        }
+
+        const reviews ={
+            review: this.state.review,
+            rating:this.state.rating,
+            name:this.props.auth.user.firstName+' '+this.props.auth.user.lastName,
+            userId:this.props.auth.user.userId,
+            productId:productId
+        }
+
+        fetch(`${base_url}/products/addReview`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': this.props.auth.token
+            },
+            method: 'PUT',
+            body: JSON.stringify(reviews)
+        })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    textHandler = (e) =>{
+        this.setState({
+            review:e.target.value
+        });
+    }
+
+    formatDate = (date) => {
+        let d = new Date(date);
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    }
+
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({rating: nextValue});
     }
 
     render(){
@@ -100,38 +143,31 @@ class ProductDetails extends Component{
                             </div>
                         </div>
                         <div className="ProductDetails">
-                            {/*<div className="BreadCrumb">*/}
-                            {/*    <small>Home > Mobiles > Iphone</small>*/}
-                            {/*</div>*/}
-
                             <div className="row">
                             <h2 >{product.name}</h2>
                             </div>
                             <div className="row">
-                                <h1><i className="fa fa-usd" aria-hidden="true"></i> {product.price}</h1>
+                                <h1><i className="fa fa-usd" aria-hidden="true"/> {product.price}</h1>
                                 &nbsp; &nbsp;
-                                <h2 className="text-success">30% off</h2>
+                                <h2 className="text-success">{product.offer}% off</h2>
                             </div>
                             <div className="row">
-                                <h3 className="text-warning">
-                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                    <i className="fa fa-star" aria-hidden="true"></i>
-                                    <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                    <i className="fa fa-star-o" aria-hidden="true"></i>
-                                </h3>
+                                <StarRatingComponent
+                                    name="rating"
+                                    starCount={5}
+                                    editing={false}
+                                    value={2}
+                                    renderStarIcon={()=> <i className="fa fa-star fa-lg" aria-hidden="true"/>}/>
                                 &nbsp; &nbsp;
-                                <h5>1200 star rating and 250 reviews</h5>
                             </div>
                             <div className="row">
-                                <p><i className="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Bank
-                                    Offer</strong> 20% Instant Discount on SBI Credit Cards</p>
-                                <p><i className="text-success fa fa-check-square-o" aria-hidden="true"></i> <strong>Bank
-                                    Offer</strong> 5% Unlimited Cashback on Flipkart Axis Bank Credit Card </p>
+                                <p><i className="text-success fa fa-check-square-o" aria-hidden="true"/> <strong>Bank
+                                    Offer</strong> 20% Instant Discount on Visa Credit Cards</p>
+                                <p><i className="text-success fa fa-check-square-o" aria-hidden="true"/> <strong>Bank
+                                    Offer</strong> 5% Unlimited Cashback on BOC Credit Cards </p>
                             </div>
-
                             <div className="row">
-                                <h3 className="text-info"><i className="fa fa-map-marker" aria-hidden="true"></i></h3>
+                                <h3 className="text-info"><i className="fa fa-map-marker" aria-hidden="true"/></h3>
                                 <p> &nbsp; Delivery | &nbsp;<span>FREE</span></p>
                             </div>
                             <div className="row">
@@ -147,55 +183,58 @@ class ProductDetails extends Component{
                     </div>
                     <div className="container mt-5 mb-5">
                         <div className="row">
-                            <h2>Ratings & Reviews</h2>
+                            <h3>Ratings & Reviews</h3>
                         </div>
+                        {product.reviews.map(r =>{
+                            return(
+                                <div className="row mt-5 mb-5">
+                                    <div className="media">
+                                        <div className="mr-3">
+                                            <i className="fa fa-user-o fa-3x" />
+                                        </div>
+                                        <div className="media-body">
+                                            <h5 className="mt-0">{r.name} - {this.formatDate(r.createdAt)}</h5>
+                                            <StarRatingComponent
+                                                name="rating"
+                                                starCount={5}
+                                                editing={false}
+                                                value={r.rating}
+                                                renderStarIcon={()=> <i className="fa fa-star fa-lg" aria-hidden="true"/>}/>
+                                            <p>{r.review}</p>
 
-                        <div className="row mt-5 mb-5">
-                            <div className="media">
-                                <img className="mr-3" src={require('./user_logo.jpg')} alt="Generic placeholder image"/>
-                                    <div className="media-body">
-                                        <h5 className="mt-0">Very nice product. <span className="text-warning">
-                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                            <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                            <i className="fa fa-star-o" aria-hidden="true"></i> </span>
-                                        </h5>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
-                                        turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                                        felis in faucibus.
+                                        </div>
                                     </div>
-                            </div>
-                        </div>
+                                </div>
+                            )
+                        })
+                        }
                         <div className="row mb-5">
-                            <h2> Post Your Own Reviews</h2>
+                            <h3> Post Your Own Reviews</h3>
                         </div>
-
-
                         <form>
-                            {/*<div className="form-group">*/}
-                            {/*    <label htmlFor="exampleInputEmail1">Email address</label>*/}
-                            {/*    <input type="email" className="form-control" id="exampleInputEmail1"*/}
-                            {/*           aria-describedby="emailHelp" placeholder="Enter email"/>*/}
-                            {/*        <small id="emailHelp" className="form-text text-muted">We'll never share your email*/}
-                            {/*            with anyone else.</small>*/}
-                            {/*</div>*/}
+                            <label htmlFor="exampleInputPassword1">Rate</label>
+                            <div className="form-group">
+                                <StarRatingComponent
+                                    name="rating"
+                                    starCount={5}
+                                    value={this.state.rating}
+                                    onStarClick={this.onStarClick.bind(this)}
+                                    renderStarIcon={()=> <i className="fa fa-star fa-lg" aria-hidden="true"/>}
+                                />
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Review</label>
                                 <textarea type="text" className="form-control" id="exampleInputtextarea"
-                                          placeholder="write your own reviews" rows="3"></textarea>
+                                          placeholder="write your own reviews" rows="3" value={this.state.review} onChange={this.textHandler}/>
                             </div>
-                            <button type="submit" className="btn btn-dark">Submit</button>
+                            <button onClick={()=>{this.addReview(product._id)}} type="submit" className="btn btn-dark">Submit</button>
                         </form>
                     </div>
-
                 </div>
 
         }else{
             productDescription = <div>Product is loading...!</div>
         }
-
 
         return (
             <div>
