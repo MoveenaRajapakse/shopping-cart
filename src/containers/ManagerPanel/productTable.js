@@ -76,7 +76,7 @@ class ProductTable extends Component{
                                     <td>{product.offer}</td>
                                     <td>{this.formatDate(product.createdAt)}</td>
                                     <td>{product.stock}</td>
-                                    <td><button type="submit" value="Submit" className="btn btn-dark">Add Discount</button></td>
+                                    <td><button type="submit" value="Submit" className="btn btn-dark" onClick="/adddiscounts">Add Discount</button></td>
                                 </tr>
                                 </tbody>
                             )
