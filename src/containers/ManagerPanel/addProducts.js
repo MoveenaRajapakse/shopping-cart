@@ -234,7 +234,7 @@ class AddProducts extends Component {
                         </div>
                         {msg}
                         <div className="form-group ">
-                            <button type="submit" value="Submit" className="btn btn-dark ">ADD</button>
+                            <button type="submit" value="Submit" className="btn btn-dark">ADD</button>
                         </div>
                     </form>
                 </div>

@@ -67,7 +67,7 @@ class Products extends Component{
                 </div>
                 <div className="ContentBody">
                     {/*---------------side menu-----------*/}
-                    <div className="SideMenu">
+                     <div className="SideMenu">
                         <h3 className="SideMenuTitle">Filters</h3>
                         <div className="Filter">
                             <p className="FilterTitle">Categories</p>

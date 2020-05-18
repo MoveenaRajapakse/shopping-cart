@@ -31,6 +31,7 @@ class TopHeader extends Component{
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li className="dropdown-item"><Link className="text-link" to="/orders"><i className="fa fa-list-alt"></i>&nbsp;&nbsp;<span>Orders</span></Link></li>
                 <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+
             </div>;
         }
 

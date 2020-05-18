@@ -21,6 +21,7 @@ import cartReducers from './store/reducers/cartReducer';
 import PlaceOrder from './containers/PlaceOrder/PlaceOrder';
 import ThankYou from './containers/ThankYou/thankyou';
 import Orders from './containers/Orders/orders';
+import AddDiscounts from "./containers/ManagerPanel/addDiscounts";
 
 const rootReducers = combineReducers({
   auth: authReducers,
@@ -42,6 +43,7 @@ function App() {
 
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+
               {/*<Route path="/forget-password" component={ForgetPassword} />*/}
               {/*<Route path="/cpanel" component={ControlPanel} />*/}
               <Route path="/products/:category/:slug" component={ProductDetails} />
@@ -53,6 +55,7 @@ function App() {
               <PrivateRoute path="/addproduct" component={AddProducts} />
               <PrivateRoute path="/addcategory" component={AddCategory} />
               <PrivateRoute path="/addmanager" component={AddManager} />
+              <privateRoute path="/adddiscounts" component={AddDiscounts}/>
               <Route path="/"  component={Shop} />
             </Switch>
 
