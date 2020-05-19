@@ -4,7 +4,8 @@ import Header from "../../components/Header/Header";
 class AddDiscounts extends Component {
     render() {
         return (
-            <Header/>
+            <h4> Add Discounts</h4>
+
         );
     }
 }

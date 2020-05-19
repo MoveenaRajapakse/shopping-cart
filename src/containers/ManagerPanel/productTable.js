@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {base_url} from "../../constants";
 import * as authActions from "../../store/actions/authActions";
 import {connect} from "react-redux";
-
+import AddDiscounts from "./addDiscounts";
 
 class ProductTable extends Component{
 
@@ -51,6 +51,29 @@ class ProductTable extends Component{
         return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
+    addToDiscounts = () =>{
+        //this.props.history.push('/addDiscounts');
+        //this.push('/addDiscounts');
+    }
+
+    removeProduct = (id) =>{
+        fetch(`${base_url}/products/delete/`+id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': this.props.auth.token
+            },
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+                this.getProducts();
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     render() {
         return (
             <div class="container">
@@ -63,7 +86,8 @@ class ProductTable extends Component{
                         <th scope="col">Discount</th>
                         <th scope="col">Created Date</th>
                         <th scope="col">Stock</th>
-                        <th scope="col">Options</th>
+                        <th scope="col">Option</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     {
@@ -76,7 +100,8 @@ class ProductTable extends Component{
                                     <td>{product.offer}</td>
                                     <td>{this.formatDate(product.createdAt)}</td>
                                     <td>{product.stock}</td>
-                                    <td><button type="submit" value="Submit" className="btn btn-dark" onClick="/adddiscounts">Add Discount</button></td>
+                                    <td><button type="submit" value="Submit" className="btn btn-dark" onClick={()=>{this.addToDiscounts()}}>Add Discount</button></td>
+                                    <td><button type="submit" value="Submit" className="btn btn-dark" onClick={()=>{this.removeProduct(product._id)}}>Delete</button></td>
                                 </tr>
                                 </tbody>
                             )
