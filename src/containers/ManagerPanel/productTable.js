@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {base_url} from "../../constants";
 import * as authActions from "../../store/actions/authActions";
 import {connect} from "react-redux";
-import AddDiscounts from "./addDiscounts";
+
 
 class ProductTable extends Component{
 
@@ -25,6 +25,7 @@ class ProductTable extends Component{
         }
     }
 
+    //------------------Get all available products--------------------
     getProducts = () => {
         console.log(this.props.auth.isAuthenticated)
         //const token =  this.props.auth.token;
@@ -51,11 +52,38 @@ class ProductTable extends Component{
         return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
-    addToDiscounts = () =>{
-        //this.props.history.push('/addDiscounts');
-        //this.push('/addDiscounts');
+    //-----------------------Add discount to selected product--------------------
+    addDiscounts = (ProductId) => {
+
+        /*const discount = {
+            proID:ProductId,
+            offer:this.state.offer
+        }*/
+
+        const proID = ProductId;
+        const offer = this.state.offer;
+
+        fetch(`${base_url}/products/update/offer`, {
+            headers: {
+                'Content-Type': 'application/json',
+                //'auth-token': this.props.auth.token
+            },
+
+            method: 'PUT',
+            body: JSON.stringify(proID,offer)
+        })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
     }
 
+    //---------------------Delete a selected product-------------------
+    //===============Refresh the browser after delete==================
     removeProduct = (id) =>{
         fetch(`${base_url}/products/delete/`+id, {
             headers: {
@@ -74,7 +102,13 @@ class ProductTable extends Component{
             })
     }
 
+
     render() {
+
+        /*if(this.state.removeProduct.isSuccess){
+            let msg = <success>{this.state.removeProduct.errorMessage}</success>;
+        }*/
+
         return (
             <div class="container">
                 <h4>Available Products</h4>
@@ -100,7 +134,7 @@ class ProductTable extends Component{
                                     <td>{product.offer}</td>
                                     <td>{this.formatDate(product.createdAt)}</td>
                                     <td>{product.stock}</td>
-                                    <td><button type="submit" value="Submit" className="btn btn-dark" onClick={()=>{this.addToDiscounts()}}>Add Discount</button></td>
+                                    <td><input type="text" placeholder="Discount" value={this.state.offer} />&nbsp;&nbsp;<button type="submit" value="Submit" className="btn btn-dark" onClick={()=>{this.addDiscounts(product._id)}}>Add Discount</button></td>
                                     <td><button type="submit" value="Submit" className="btn btn-dark" onClick={()=>{this.removeProduct(product._id)}}>Delete</button></td>
                                 </tr>
                                 </tbody>
