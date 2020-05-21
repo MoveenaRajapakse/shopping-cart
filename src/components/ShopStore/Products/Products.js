@@ -78,7 +78,7 @@ class Products extends Component{
                             </ul>
                         </div>
 
-                        <div className="Filter">
+                         {/*<div className="Filter">
                             <p className="FilterTitle">Price</p>
                             <div>
                                 <button onClick={() => this.applyFilter({price:1} )} className="FilterButton">Low to High</button>
@@ -86,8 +86,7 @@ class Products extends Component{
                             <div>
                                 <button onClick={() => this.applyFilter({price: -1})} className="FilterButton">High to Low</button>
                             </div>
-
-                        </div>
+                         </div>*/}
                     </div>
                     {/*---------------products area-----------*/}
                     <div className="MainContent">
