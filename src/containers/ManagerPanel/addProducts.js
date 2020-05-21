@@ -49,6 +49,8 @@ class AddProducts extends Component {
         }
     }
 
+    //---------------Get all available categories in the store------------------
+    //================Refresh the browser to get categories=====================
     getCategories = () => {
         console.log(this.props.auth.isAuthenticated)
         //const token =  this.props.auth.token;
