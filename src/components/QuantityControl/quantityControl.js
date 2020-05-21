@@ -12,6 +12,7 @@ const QuantityControl = props => {
                 value={props.quantity}
             />
             <button onClick={(e) => props.increaseQuantity(e, props.productId)}>+</button>
+
         </div>
     );
 }

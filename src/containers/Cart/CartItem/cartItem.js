@@ -3,7 +3,9 @@ import QuantityControl from '../../../components/QuantityControl/quantityControl
 
 import './cartitem.styles.css';
 
+
 const CartItem = props => {
+
     return (
         <div className="SingleItem">
             <div className="ItemWrapper">
@@ -24,7 +26,10 @@ const CartItem = props => {
                     increaseQuantity={props.increaseQuantity}
                     decreaseQuantity={props.decreaseQuantity}
                 />
-                <button className="btn btn-dark btn-sm">REMOVE</button>
+                 <button className="btn btn-dark btn-sm"  >REMOVE</button>
+                {/*<button className="btn btn-dark btn-sm" onClick={clearCart()} >REMOVE</button>*/}
+
+
             </div>
         </div>
     )

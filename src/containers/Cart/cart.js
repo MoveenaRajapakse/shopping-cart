@@ -8,6 +8,7 @@ import CartPrice from '../../components/CartPrice/cartPrice';
 
 import './cart.styles.css';
 
+
 class Cart extends Component{
 
     state = {
@@ -50,6 +51,25 @@ class Cart extends Component{
 
     }
 
+
+    /*clearCart = (id) =>{
+        fetch(`${base_url}/cart/delete/`+id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': this.props.auth.token
+            },
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+                this.getCartItems();
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }*/
+
     changeQuantity = (e, productId) => {
 
         // console.log(e.target.value);
@@ -67,6 +87,7 @@ class Cart extends Component{
 
         // this.updateCart(productId, parseInt(e.target.value));
     }
+
 
     componentDidMount() {
         if(!this.props.auth.isAuthenticated){
@@ -98,6 +119,7 @@ class Cart extends Component{
         }
     }
 
+
     render (){
 
         return (
@@ -126,12 +148,24 @@ class Cart extends Component{
                                             changeQuantity={this.changeQuantity}
                                             increaseQuantity={this.increaseQuantity}
                                             decreaseQuantity={this.decreaseQuantity}
+
+
+
                                         />)
+
+
                                 }
 
                                 <div className="PlaceOrder">
                                     <button className="PlaceOrderButton" onClick={() => this.props.history.push('/place-order')}>Place Order</button>
+
+
+
+
+
+
                                 </div>
+
 
                             </div>
                         </div>

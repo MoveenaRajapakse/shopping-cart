@@ -96,6 +96,8 @@ export const updateCart = (token, userId, product) => {
     }
 }
 
+
+
 export const clearCart = () => {
     return dispatch => {
         dispatch({
@@ -104,3 +106,31 @@ export const clearCart = () => {
         });
     }
 }
+/*
+export const clearCart = (id) => {
+
+        fetch(`${base_url}/cart/delete/`+id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': this.props.auth.token
+            },
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+                this.getCartItems();
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+    return dispatch => {
+        dispatch({
+            type: CLEAR_CART,
+            payload: null
+        });
+    }
+}
+*/
+

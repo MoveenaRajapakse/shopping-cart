@@ -83,12 +83,14 @@ const cartReducers = (state = initState, actions) => {
             }
             break;
         case CLEAR_CART:
+
             state = {
                 cartItem: [],
                 totalAmount: 0,
                 cartCount: 0
             }
             break;
+       
         default:
             break;
     }
