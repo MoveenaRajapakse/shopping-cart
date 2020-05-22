@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import TopHeader from './TopHeader/TopHeader';
+import TopHeader from "./TopHeader/TopHeader";
 import * as cartActions from '../../store/actions/cartActions';
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
-
 
 class Header extends Component {
 

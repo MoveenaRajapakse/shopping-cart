@@ -84,7 +84,6 @@ class AddProducts extends Component {
         this.setState({
             product: updatedProduct
         })
-        console.log(product.img);
 
     }
 
@@ -196,15 +195,20 @@ class AddProducts extends Component {
                             </div>
                             <div className="form-group col-md-6">
                                 <label htmlFor="inputState">Select Category</label>
+
                                 <select id="inputState" className="form-control" value={product.category} onChange={this.selectBoxHandler} >
                                     {
                                         this.state.categoryList.map(categories =>{
                                             return(
-                                            <option value={categories._id} key={categories._id}>{categories.name}</option>
+                                                categories.children.map(sub =>{
+                                                    return (
+                                                        <option value={sub._id} key={sub._id}>{sub.name}</option>
+                                                    )
+                                                })
                                             )
+
                                         })
                                     }
-
                                 </select>
                             </div>
                         </div>

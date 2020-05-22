@@ -26,7 +26,6 @@ class Orders extends Component{
             this.getOrders();
         }
 
-
     }
 
     getOrders = () => {
@@ -67,8 +66,6 @@ class Orders extends Component{
     }
 
     render() {
-
-
 
         return (
             <React.Fragment>

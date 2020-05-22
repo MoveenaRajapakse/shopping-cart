@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
 import './placeorder.styles.css';
-
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
-import AddressForm from './AddressForm/addressForm';
+import AddressForm from './AddressForm/AddressForm';
 import CartPrice from '../../components/CartPrice/cartPrice';
 import DeliveryAddress from './DeliveryAddress/deliveryAddress';
-import RadioButton from '../../components/RadioButton/radioButton';
+import RadioButton from '../../components/RadioButton/RadioButton';
 import * as cartActions from '../../store/actions/cartActions';
 
 import { base_url } from '../../constants';
@@ -242,24 +241,21 @@ class PlaceOrder extends Component{
                 <Header />
                 <div className="Content">
                     <div className="PlaceOrderWrapper">
-
-
                         <div className="DeliveryAddress">
-
                             <div className="Card">
-                                <p className="CardText">Login {this.props.auth.isAuthenticated ? <i className="fas fa-check"></i> : null}</p>
+                                <p className="CardText">Login {this.props.auth.isAuthenticated ? <i className="fa fa-check"/> : null}</p>
                                 <p className="CardText">Email: {this.props.auth.user.email}</p>
                             </div>
-
                             {
                                 this.state.isAddressConfirm ?
                                     <div className="Card">
-                                        <p className="CardText">Delivery Address {this.state.isAddressConfirm ? <i className="fas fa-check"></i> : null}</p>
+                                        <p className="CardText">Delivery Address {this.state.isAddressConfirm ? <i className="fa fa-check"/> : null}</p>
                                         <p>
                                             <span>{`${address.fullName} - ${address.mobileNumber} - `}</span>
                                             <span>{ `${address.address}, ${address.cityDistrictTown}, ${address.state} - ${address.pinCode}`}</span>
                                         </p>
                                     </div> :
+
                                     <React.Fragment>
                                         <div className="Card">
                                             <h4>Delivery Address</h4>
@@ -297,18 +293,15 @@ class PlaceOrder extends Component{
                                                         addressSubmitHandler={this.addressSubmitHandler}
                                                     /> : null
                                             }
-
-
                                         </div>
                                     </React.Fragment>
+
                             }
-
-
 
                             {
                                 this.state.isOrderConfirm ?
                                     <div className="Card">
-                                        <p className="CardText">Order Summary <i className="fas fa-check"></i> </p>
+                                        <p className="CardText">Order Summary <i className="fa fa-check"/></p>
                                     </div> :
                                     this.state.isAddressConfirm ?
                                         <div className="Card">
@@ -359,25 +352,10 @@ class PlaceOrder extends Component{
                                     </div> : null
                             }
 
-
-
-
-
-
-
-
-
                         </div>
-
                         <CartPrice />
-
-
                     </div>
-
-
-
                 </div>
-
             </React.Fragment>
         );
     }

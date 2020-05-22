@@ -1,11 +1,10 @@
 import React from 'react';
-import NormalInput from '../../../components/NormalInput/normalInput';
+import NormalInput from '../../../components/NormalInput/NormalInput';
 
 
 const AddressForm = props =>  {
 
     const {address} = props;
-
 
     return (
         <form onSubmit={props.addressSubmitHandler}>

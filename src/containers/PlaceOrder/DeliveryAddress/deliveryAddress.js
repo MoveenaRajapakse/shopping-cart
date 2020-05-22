@@ -1,6 +1,6 @@
 import React from 'react';
 import './deliveryaddress.css';
-import RadioButton from '../../../components/RadioButton/radioButton';
+import RadioButton from '../../../components/RadioButton/RadioButton';
 
 const DeliveryAddress = props => {
 

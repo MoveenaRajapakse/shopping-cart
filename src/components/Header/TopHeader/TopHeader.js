@@ -16,21 +16,21 @@ class TopHeader extends Component{
 
         let cart =  <ul className="navbar-nav">
             <li className="nav-item">
-                <a className="nav-link"><Link className="text-link" to="/cart"><i className="fa fa-shopping-cart"></i> ( {this.props.cartCount} ) </Link></a>
+                <a className="nav-link"><Link className="text-link" to="/cart"><i className="fa fa-shopping-cart"/> ( {this.props.cartCount} ) </Link></a>
             </li>
         </ul>;
 
         let dashboard;
 
         let guestAccount =  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li className="dropdown-item"><Link className="text-link" to="/signup"><i className="fa fa-user-plus"></i>&nbsp;&nbsp;<span>Register</span></Link></li>
-            <li className="dropdown-item"><Link className="text-link" to="/login"><i className="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span></Link></li>
+            <li className="dropdown-item"><Link className="text-link" to="/signup"><i className="fa fa-user-plus"/>&nbsp;&nbsp;<span>Register</span></Link></li>
+            <li className="dropdown-item"><Link className="text-link" to="/login"><i className="fa fa-sign-in"/>&nbsp;&nbsp;<span>Login</span></Link></li>
         </div>;
 
         if(this.props.auth.isAuthenticated){
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li className="dropdown-item"><Link className="text-link" to="/orders"><i className="fa fa-list-alt"></i>&nbsp;&nbsp;<span>Orders</span></Link></li>
-                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+                <li className="dropdown-item"><Link className="text-link" to="/orders"><i className="fa fa-list-alt"/>&nbsp;&nbsp;<span>Orders</span></Link></li>
+                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"/>&nbsp;&nbsp;<span>Logout</span></Link></li>
 
             </div>;
         }
@@ -38,7 +38,7 @@ class TopHeader extends Component{
         if(this.props.auth.isAuthenticated && this.props.auth.user.isAdmin){
             cart = null;
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"/>&nbsp;&nbsp;<span>Logout</span></Link></li>
             </div>;
 
             dashboard = <ul className="navbar-nav">
@@ -54,7 +54,7 @@ class TopHeader extends Component{
         if(this.props.auth.isAuthenticated && this.props.auth.user.isManager){
             cart = null;
             guestAccount = <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"></i>&nbsp;&nbsp;<span>Logout</span></Link></li>
+                <li className="dropdown-item"><Link className="text-link" to="" onClick={() => this.props.logout()}><i className="fa fa-sign-out"/>&nbsp;&nbsp;<span>Logout</span></Link></li>
             </div>;
 
             dashboard = <ul className="navbar-nav">
@@ -69,7 +69,7 @@ class TopHeader extends Component{
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a className="navbar-brand brand"><Link className="text-link" to="/">Fashion House</Link></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarNavDropdown">
                     <ul className="navbar-nav mr-auto">
@@ -80,7 +80,7 @@ class TopHeader extends Component{
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle text-link" id="navbarDropdownMenuLink"
                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                  to="/account"><i className="fa fa-user-circle-o"></i>&nbsp;&nbsp;{this.props.auth.isAuthenticated ? this.props.auth.user.firstName: 'My Account'}&nbsp;&nbsp;</Link>
+                                  to="/account"><i className="fa fa-user-circle-o"/>&nbsp;&nbsp;{this.props.auth.isAuthenticated ? this.props.auth.user.firstName: 'My Account'}&nbsp;&nbsp;</Link>
                             {guestAccount}
                         </li>
                     </ul>

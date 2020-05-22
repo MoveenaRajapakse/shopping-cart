@@ -156,7 +156,7 @@ class ProductDetails extends Component{
                                     name="rating"
                                     starCount={5}
                                     editing={false}
-                                    value={2}
+                                    value={product.rating}
                                     renderStarIcon={()=> <i className="fa fa-star fa-lg" aria-hidden="true"/>}/>
                                 &nbsp; &nbsp;
                             </div>

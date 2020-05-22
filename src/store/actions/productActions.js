@@ -58,7 +58,7 @@ export const getProducts = (categorySlug = '', filter) => {
                     products: jsonResponse.message
                 });
             }
-
+            console.log(jsonResponse.message);
             return jsonResponse;
 
         }catch(error){

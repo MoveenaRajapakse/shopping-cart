@@ -71,7 +71,7 @@ class Products extends Component{
                         <h3 className="SideMenuTitle">Filters</h3>
                         <div className="Filter">
                             <p className="FilterTitle">Categories</p>
-                            <ul  className="list-unstyled">
+                            <ul className="list-unstyled">
                                 {
                                     this.props.products.categories.length > 0 ? this.categoryTree(this.props.products.categories) : null
                                 }
@@ -99,6 +99,7 @@ class Products extends Component{
                                     price={product.price}
                                     productPic={product.productPic}
                                     slug={product.slug}
+                                    rating={product.rating}
                                 />)
                             }
                             </div>
