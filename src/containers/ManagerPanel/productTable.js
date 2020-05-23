@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 class ProductTable extends Component{
 
     state = {
-        productList: []
+        productList: [],
     }
 
     componentDidMount(){
@@ -62,15 +62,18 @@ class ProductTable extends Component{
 
         const proID = ProductId;
         const offer = this.state.offer;
-
+        console.log(proID+'--'+offer)
         fetch(`${base_url}/products/update/offer`, {
             headers: {
                 'Content-Type': 'application/json',
-                //'auth-token': this.props.auth.token
+                'auth-token': this.props.auth.token
             },
 
             method: 'PUT',
-            body: JSON.stringify(proID,offer)
+            body: {
+                _id:proID,
+                offer:offer
+            }
         })
             .then(response => response.json())
             .then(jsonResponse => {

@@ -21,7 +21,6 @@ class Products extends Component{
         this.props.getProducts(categorySlug, filter)
             .then(response => {
                 console.log(response);
-
                 this.setState({
                     products: response.message
                 })
@@ -42,8 +41,8 @@ class Products extends Component{
     }
 
     categoryTree(categories){
-        var categoriesAr = [];
-        for(var value of categories){
+        let categoriesAr = [];
+        for(let value of categories){
 
             categoriesAr.push(
                 <li key={value.slug}>
@@ -78,15 +77,15 @@ class Products extends Component{
                             </ul>
                         </div>
 
-                         {/*<div className="Filter">
-                            <p className="FilterTitle">Price</p>
-                            <div>
-                                <button onClick={() => this.applyFilter({price:1} )} className="FilterButton">Low to High</button>
-                            </div>
-                            <div>
-                                <button onClick={() => this.applyFilter({price: -1})} className="FilterButton">High to Low</button>
-                            </div>
-                         </div>*/}
+                         {/*<div className="Filter">*/}
+                         {/*   <p className="FilterTitle">Price</p>*/}
+                         {/*   <div>*/}
+                         {/*       <button onClick={() => this.applyFilter({price:1} )} className="FilterButton">Low to High</button>*/}
+                         {/*   </div>*/}
+                         {/*   <div>*/}
+                         {/*       <button onClick={() => this.applyFilter({price: -1})} className="FilterButton">High to Low</button>*/}
+                         {/*   </div>*/}
+                         {/*</div>*/}
                     </div>
                     {/*---------------products area-----------*/}
                     <div className="MainContent">

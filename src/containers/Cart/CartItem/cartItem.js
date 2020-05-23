@@ -26,7 +26,7 @@ const CartItem = props => {
                     increaseQuantity={props.increaseQuantity}
                     decreaseQuantity={props.decreaseQuantity}
                 />
-                 <button className="btn btn-dark btn-sm"  >REMOVE</button>
+                 <button onClick={props.removeItem} className="btn btn-dark btn-sm"  >REMOVE</button>
                 {/*<button className="btn btn-dark btn-sm" onClick={clearCart()} >REMOVE</button>*/}
 
 

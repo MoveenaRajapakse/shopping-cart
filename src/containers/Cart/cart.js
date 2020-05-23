@@ -5,6 +5,7 @@ import * as cartActions from '../../store/actions/cartActions';
 import * as authActions from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import CartPrice from '../../components/CartPrice/cartPrice';
+import {base_url} from "../../constants/index";
 
 import './cart.styles.css';
 
@@ -52,23 +53,25 @@ class Cart extends Component{
     }
 
 
-    /*clearCart = (id) =>{
-        fetch(`${base_url}/cart/delete/`+id, {
+    clearCart = (id) =>{
+        const userId = this.props.auth.user.userId;
+
+        fetch(`${base_url}/cart/delete/${userId}/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': this.props.auth.token
             },
-            method: 'DELETE',
+            method: 'PUT',
         })
             .then(response => response.json())
             .then(jsonResponse => {
                 console.log(jsonResponse);
-                this.getCartItems();
             })
             .catch(error => {
                 console.log(error);
             })
-    }*/
+        window.location.reload(false);
+    }
 
     changeQuantity = (e, productId) => {
 
@@ -88,8 +91,11 @@ class Cart extends Component{
         // this.updateCart(productId, parseInt(e.target.value));
     }
 
-
     componentDidMount() {
+       this.getItems()
+    }
+
+    getItems = () =>{
         if(!this.props.auth.isAuthenticated){
             this.props.getToken()
                 .then(result => {
@@ -101,9 +107,6 @@ class Cart extends Component{
                 })
                 .then(cartItems => {
                     if(cartItems.cart.length > 0){
-
-                        console.log(this.props.cart)
-
                         this.setState({
                             cartItems: this.props.cart.cartItem
                         })
@@ -133,7 +136,6 @@ class Cart extends Component{
                                 <h4>My Cart</h4>
                             </div>
                             <div className="CardBody">
-
                                 {
                                     this.state.cartItems.map(product =>
                                         <CartItem
@@ -148,30 +150,17 @@ class Cart extends Component{
                                             changeQuantity={this.changeQuantity}
                                             increaseQuantity={this.increaseQuantity}
                                             decreaseQuantity={this.decreaseQuantity}
-
-
-
-                                        />)
-
-
+                                            removeItem={()=>this.clearCart(product.product)}
+                                        />
+                                        )
                                 }
-
                                 <div className="PlaceOrder">
                                     <button className="PlaceOrderButton" onClick={() => this.props.history.push('/place-order')}>Place Order</button>
-
-
-
-
-
-
                                 </div>
-
 
                             </div>
                         </div>
-
                         <CartPrice />
-
                     </div>
                 </div>
             </React.Fragment>
